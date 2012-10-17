@@ -1,0 +1,78 @@
+<%- include common/header.html -%>
+	<input type="hidden" id="delArticleId" value="0" />
+	<div id="modalkeyboardtrue" class="modal hide fade">
+            <div class="modal-header">
+              <a class="close" data-dismiss="modal" >&times;</a>
+              <h3>提示</h3>
+            </div>
+            <div class="modal-body">
+              <h4>是否确定删除</h4>
+            </div>
+            <div class="modal-footer">
+              <a href="#" class="btn" data-dismiss="modal" >关闭</a>
+              <a href="#" onclick="delArticle()" class="btn btn-primary">确定</a>
+            </div>
+    </div>
+	 <div class="container-fluid">
+	  <div class="row-fluid">
+	  	<div class="span3">
+			<ul class="nav nav-pills nav-stacked">
+			        <li class="active"><a href="/cookbook">菜谱管理</a></li>
+			        <li><a href="/write">新菜谱</a></li>
+			        <li><a href="#">个人账户</a></li>
+			</ul>
+	    </div>
+	    <div class="span9">
+			<table class="table">
+		        <thead>
+		          <tr>
+		            <th>序号</th>
+		            <th>文章名称</th>
+		            <th>发布时间</th>
+		            <th>操作</th>
+		          </tr>
+		        </thead>
+		        <tbody>
+		        	<%  
+		        		var index = 0;
+		        		var monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September",     "October", "November", "December" ];
+						for (var item  = posts.length - 1; item != -1  ; item -- ) { 
+ 	                     	var d = posts[item].datetime;
+							var datetime = monthNames[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
+							index ++;
+					%>	
+		          <tr>
+		            <td><%=index%></td>
+		            <td><a href="/<%=posts[item].url%>"><%=posts[item].title %></a></td>
+		            <td><%= datetime %></td>
+		            <td>
+		            	<div class="btn-group">
+						  <button onclick="editArticle('<%=posts[item].id%>')" class="btn">编辑</button>
+						  <button onclick="deleteArticle('<%=posts[item].id%>')" class="btn">删除</button>
+						</div
+					</td>
+		          </tr>
+		          <% } %>
+		        </tbody>
+		      </table>
+		      <div class="pagination fr">
+				  <ul>
+				    <li><a href="#">前一页</a></li>
+				    <li class="active">
+				      <a href="#">1</a>
+				    </li>
+				    <li><a href="#">2</a></li>
+				    <li><a href="#">3</a></li>
+				    <li><a href="#">4</a></li>
+				    <li><a href="#">5</a></li>
+				    <li class="disabled"><a href="#">...</a></li>
+				    <li><a href="#">10</a></li>
+				    <li><a href="#">后一页</a></li>
+				  </ul>
+			</div>
+	    </div>
+	   </div>
+	  </div>  	
+	  <hr/>	
+<%- include common/footer.html -%>
+

@@ -1,0 +1,31 @@
+body {
+	padding-top: 60px;
+	padding-bottom: 40px;
+	font-size:13px;
+}
+img { max-width: 100%;}
+.sidebar-nav {
+	padding: 9px 0;
+}
+.fr{float:right;}
+.step-pic{margin-top:10px;margin-bottom:10px;padding-left: 30px;}
+.form-horizontal input[type="text"]{
+	height:30px;line-height:30px
+}
+.form-horizontal .control-label{
+	width:40px;
+}
+.form-horizontal .controls{
+	margin-left:60px;
+}
+.form-horizontal .step{
+	margin-left:20px;
+}
+.olink,.plink{
+	margin-left: 10px;
+}
+.olink a,.plink a{
+	margin-left: 5px;
+	cursor: pointer;
+}
+#404error{display:block;font:italic bold 200px/120px "Times New Roman",Times,Serif;text-indent:0;letter-spacing:-5px;color:rgba(216,226,244,0.3);}

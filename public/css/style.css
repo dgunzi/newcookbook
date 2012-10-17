@@ -1,0 +1,221 @@
+html, body, h1, h4, ul, li ,table,td, form {
+	padding: 0px;
+	margin: 0px;
+}
+.fl {
+	float: left;
+}
+.fr {
+	float: right;
+}
+.clear {
+	clear: both;
+}
+.sep {
+	border-width: 1px;
+	border-style: solid;
+	width: 580px;
+	clear: both;
+	color: #E0E0E0;
+}
+.sep5 {
+	height: 5px;
+}
+.sep10 {
+	height: 10px;
+}
+.sep15 {
+	height: 15px;
+}
+.sep20 {
+	height: 20px;
+}
+body {
+  	font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
+  	font-size: 14px;
+	background-color: #F3F2EE !important;
+}
+p {
+	font-size: 14px;
+	line-height: 22px;
+	color: #444;
+	white-space: normal !important;
+}
+p, span {
+	background-color: #F3F2EE !important;
+}
+p a, p a:visited, p a:hover {
+	text-decoration: none;
+	font-weight: bold;
+	color: #388DBF;
+}
+a, a:visited  {
+	text-decoration: none;
+	color: #388DBF;
+}
+ul {
+	list-style-type: none;
+}
+#header {
+	width: 960px;
+	margin: 0 auto;
+	padding: 60px 0 30px 0;
+}
+#header h1 {
+	margin-left: 170px;
+	font-size: 48px;
+	line-height: 54px;
+	font-weight: bold;
+}
+#header p {
+	padding-left: 170px;
+	margin: 10px 0 0 0;
+}
+#header a {
+	text-decoration: none;
+	color: #388DBF;
+}
+.container{
+	margin: 0px auto;
+	width: 980px;
+}
+.col-left {
+	padding: 20px 40px 20px 0;
+	text-align: right;
+	width: 140px;
+	float: left;
+}
+.col-mid {
+	padding: 20px 0 20px 0;
+	width: 580px;
+	float: left;
+}
+.col-left p.meta {
+	padding: 0px 0 12px;
+	margin: 0px;
+	position: relative;
+	text-decoration: none;
+	font-weight: normal;
+	color: #AAA;
+}
+.cell , .cell *{
+	word-break:break-all !important; 
+	word-wrap:break-word !important; 
+	white-space: normal !important;
+}
+div.cell h1 {
+	font-size: 26px;
+	line-height: 26px;
+	font-weight: bold;
+}
+div.cell h1 a, div.cell h1 a:visited {
+	text-decoration: none;
+/*	color: #222;*/
+}
+div.cell h1 a:hover {
+	color: #388DBF;
+}
+.cell a{
+	background-color: #F3F2EE !important;
+}
+.box{
+/*	padding-left: 10px;*/
+	white-space: normal !important;
+}
+.sidebar {
+	padding: 23px 0 20px 25px;
+	width: 154px;
+	border-left: 1px solid #DDD;
+}
+.sidebar p {
+	padding: 10px 0 10px 0;
+	font-size: 14px;
+	line-height: 22px;
+}
+.sidebar h4 {
+	padding: 3px 0 7px 0;
+	font-size: 20px;
+	line-height: 24px;
+	font-weight: bold;
+}
+
+.Nav {
+	font-size: 14px;
+	font-weight: bold;
+	color: #666;
+	text-decoration: none;
+}
+.Nav a:hover {
+	background-color: #E0E0E0;
+}
+.Nav a {
+	color: #666;
+	display: block;
+	margin: 10px 0;
+}
+.selected {
+	/*background-color: #F0F0F0;*/
+	background-color: #E7E7E7;
+}
+.meta-data {
+	width: 580px;
+	float: right;
+	margin-bottom: 5px;
+}
+.meta-data ul li {
+	float: right;
+	padding-left: 20px;
+}
+#wrapper {
+	width: 960px;
+	margin: 0 auto;
+	padding: 40px;
+}
+table, tr, td {
+	margin: 0px;
+}
+h1#title{
+	
+}
+.label{
+	text-align: right;
+	width : 40px;
+	margin-right: 10px;
+	color: #666;
+	font-size: 14px;
+	font-weight: bold;
+}
+textarea {
+	height: 200px;
+	width : 300px
+}
+.footer {
+	margin: 30px 0;
+	padding-top: 10px;
+	border-top-width: 1px;
+	border-top-style: dotted;
+	text-align: center;
+	color: #666;
+	width: 580px;
+	margin-left: 180px;
+}
+.login {
+	margin:40px auto;
+	width: 300px;
+}
+.login .label {
+	width: 80px;
+	display: inline-block;
+}
+.login .textarea{
+	display: inline-block;
+	width: 157px;
+}
+.login-msg{
+	color: darkOrange;
+	font-size: 12px;
+	font-weight: normal;
+	margin:10px auto;
+	width: 480px;
+	margin-bottom: -30px;
+}

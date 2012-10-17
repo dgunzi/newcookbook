@@ -1,0 +1,156 @@
+<%- include common/header.html -%>
+	<div class="container-fluid">
+	  <div class="row-fluid">
+	  	<div class="span2">
+	      	<ul class="nav nav-pills nav-stacked">
+				  <li class="active">
+				    <a href="/">全部</a>
+				  </li>
+				  <li>
+				    <a href="/cookbook">新手尝试</a>
+				  </li>
+				  <li>
+				    <a href="/cookbook">初级入门</a>
+				  </li>
+				  <li>
+				    <a href="/cookbook">初级水平</a>
+				  </li>
+				  <li>
+				    <a href="/cookbook">中级掌勺</a>
+				  </li>
+				  <li>
+				    <a href="/cookbook">高级厨师</a>
+				  </li>
+				  <li>
+				    <a href="/cookbook">厨神级</a>
+				  </li>
+			</ul>
+	    </div>
+	  	<div class="span7">
+	      <%  var monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+
+				for (var item  = cookbooks.length - 1; item != -1  ; item -- ) { 
+					//var d = new Date(cookbooks[item].datetime);
+					var d = cookbooks[item].datetime;
+					var datetime = monthNames[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
+			%>
+			<section>
+			<div class="page-header">
+			    <h1><a href="/<%=cookbooks[item].url%>"><%=cookbooks[item].title %></a></h1>
+			</div>
+			<div class="row">
+			    	<div class="row-fluid">
+	  				<div class="span9">
+	  					<%- cookbooks[item].user %>
+	  				</div>
+	  				<div class="span3">
+	  					<small><%=datetime%></small>
+	  				</div>
+	  				</div>	
+			</div>
+			<div class="row">
+				<%
+					var steps = cookbooks[item].steps;
+					var lastPic = '';
+					if(steps.indexOf('<div class="step-pic">')!=-1){
+						var array=steps.match(/<div class="step-pic">(.*?)<\/div>/g);
+						lastPic = array[array.length-1];
+						steps = steps.replace(/<div class="step-pic">(.*?)<\/div>/g,'');
+					}
+				%>
+				<%- lastPic %>
+				<%- steps %>
+			</div>	
+			</section>
+			<div class="row">
+				  <div class="fr"><a class="btn js-btn" href="/<%=cookbooks[item].url%>">查看详细  »</a></div>
+			</div>
+			<% } %>
+			<hr/>
+			 <ul class="pager">
+			  <li class="previous">
+			    <a href="#">&larr; 过去的</a>
+			  </li>
+			  <li class="next">
+			    <a href="#">更新的 &rarr;</a>
+			  </li>
+			</ul>
+	    </div>
+	    <div class="span3">
+	    	<section>
+	    		<div class="page-header">
+		          <h1>大家在看</h1>
+		        </div>
+		        <ol>
+			        <li><a>可乐鸡翅</a></li>
+			        <li><a>丝瓜炒鸡蛋</a></li>
+			        <li><a>红糖姜汁蛋包汤</a></li>
+			        <li><a>叉烧肉</a></li>
+			        <li><a>酱黄瓜</a></li>
+			        <li><a>蛋黄菠菜泥</a></li>
+			        <li><a>香芋肥肠煲</a></li>
+			        <li><a>魔芋烧鸭</a></li>
+			    </ol>
+	    	</section>
+	    	<section>
+	    		<div class="page-header">
+		          <h1>随机菜谱</h1>
+		        </div>
+		        <ol>
+			        <li><a>以热爱祖国为荣，以危害祖国为耻吗？</a></li>
+			        <li><a>以服务人民为荣，以背离人民为耻吗？</a></li>
+			        <li><a>以热爱祖国为荣，以危害祖国为耻吗？</a></li>
+			        <li><a>以服务人民为荣，以背离人民为耻吗？</a></li>
+			        <li><a>以热爱祖国为荣，以危害祖国为耻吗？</a></li>
+			        <li><a>以服务人民为荣，以背离人民为耻吗？</a></li>
+			        <li><a>以热爱祖国为荣，以危害祖国为耻吗？</a></li>
+			        <li><a>以服务人民为荣，以背离人民为耻吗？</a></li>
+			    </ol>
+	    	</section>
+	    	<section>
+	    		<div class="page-header">
+		          <h1>今日推荐</h1>
+		        </div>
+		        <div class="tabbable" style="margin-bottom: 9px;">
+			        <ul class="nav nav-tabs">
+			          <li class="active"><a href="#1" data-toggle="tab">早餐</a></li>
+			          <li class=""><a href="#2" data-toggle="tab">午餐</a></li>
+			          <li class=""><a href="#3" data-toggle="tab">晚餐</a></li>
+			        </ul>
+			        <div class="tab-content">
+			          <div class="tab-pane active" id="1">
+			            	<div class="thumbnail">
+				            <img src="/img/thumb/huangdouyumifagao.png" alt="">
+				            <div class="caption">
+				              <h3>黄豆玉米面发糕</h3>
+				              <p>
+						玉米面和黄豆面中的蛋白质不容易形成面筋，所以才需要与白面掺和着才能成形，因此我觉得只要白面的量能够使面粉揉捏成形即可，没必要占太大的量，还是要尽可能多的以杂面为主。对于女性而言，多吃黄豆面也是很有好处的。黄豆面是大豆食品中“植物雌性激素”的活性最高的一个。大豆中富含植物雌性激素，与女性荷尔蒙的雌性激素相似。别看是粗粮，为了出彩，咱们细做...
+					      </p>
+				              <p><a class="btn js-btn" href="./javascript.html#alerts">查看详细  »</a></p>
+				            </div>
+				          </div>
+			          </div>
+			          <div class="tab-pane" id="2">
+			            <div class="thumbnail">
+				            <img src="/img/thumb/jiamaji.png" alt="">
+				            <div class="caption">
+				              <h3>椒麻鸡</h3>
+				              <p>
+						鸡肉洗净后沥去水分加入水淀粉、白酒、盐拌匀，腌制半个小时。同时将花椒芽洗净、葱切成小段后备用;炒锅中无需加油，烧到微热后放入腌好的鸡肉，煸炒至水分收干，鸡肉开始变白;鸡肉水分炒干后加入老抽、红糖，此时转成中小火，炒至鸡肉上色，同时放入干辣椒以及一半量的花椒芽;依次放入花椒粒、姜片、大蒜继续炒出香味，然后加水没过鸡肉的二分...
+					      </p>
+				              <p><a class="btn js-btn" href="./javascript.html#alerts">查看详细  »</a></p>
+				            </div>
+				          </div>
+			          </div>
+			          <div class="tab-pane" id="3">
+			            <p>这里是段3</p>
+			          </div>
+			        </div>
+			      </div>
+	    	</section>
+	    </div>
+	  </div>
+	 </div>
+	 <hr/>
+<%- include common/footer.html -%>
+
