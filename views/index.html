@@ -57,6 +57,11 @@
 						lastPic = array[array.length-1];
 						steps = steps.replace(/<div class="step-pic">(.*?)<\/div>/g,'');
 					}
+					
+					var nextPage = current_page+1;
+					var prePage = current_page-1;
+					if(pages == current_page) nextPage = pages;
+					if(current_page == 1) prePage = 1;
 				%>
 				<%- lastPic %>
 				<%- steps %>
@@ -69,10 +74,10 @@
 			<hr/>
 			 <ul class="pager">
 			  <li class="previous">
-			    <a href="#">&larr; 过去的</a>
+			    <a href="/?page=<%=nextPage%>">&larr; 过去的</a>
 			  </li>
 			  <li class="next">
-			    <a href="#">更新的 &rarr;</a>
+			    <a href="/?page=<%=prePage%>">更新的 &rarr;</a>
 			  </li>
 			</ul>
 	    </div>

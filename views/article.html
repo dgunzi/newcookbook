@@ -1,5 +1,22 @@
 <%- include common/header.html -%>
-	<input type="hidden" id="delArticleId" value="0" />
+	<script>
+		function editCookbook(id){
+			var url = '/edit/a/'+id;
+			window.location.href = url;
+		}
+		function deleteCookbook(id){
+			$('#delCookbookId').val(id);
+			$('#modalkeyboardtrue').modal({
+		      keyboard:true
+		    });
+		}
+		function delCookbook(){
+			var id = $('#delCookbookId').val();
+			var url = '/delete/a/'+id;
+			window.location.href = url;
+		}
+	</script>
+	<input type="hidden" id="delCookbookId" value="0" />
 	<div id="modalkeyboardtrue" class="modal hide fade">
             <div class="modal-header">
               <a class="close" data-dismiss="modal" >&times;</a>
@@ -10,7 +27,7 @@
             </div>
             <div class="modal-footer">
               <a href="#" class="btn" data-dismiss="modal" >关闭</a>
-              <a href="#" onclick="delArticle()" class="btn btn-primary">确定</a>
+              <a href="#" onclick="delCookbook()" class="btn btn-primary">确定</a>
             </div>
     </div>
 	 <div class="container-fluid">
@@ -36,20 +53,20 @@
 		        	<%  
 		        		var index = 0;
 		        		var monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September",     "October", "November", "December" ];
-						for (var item  = posts.length - 1; item != -1  ; item -- ) { 
- 	                     	var d = posts[item].datetime;
+						for (var item  = cookbooks.length - 1; item != -1  ; item -- ) { 
+ 	                     	var d = cookbooks[item].datetime;
 							var datetime = monthNames[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
 							index ++;
 					%>	
 		          <tr>
 		            <td><%=index%></td>
-		            <td><a href="/<%=posts[item].url%>"><%=posts[item].title %></a></td>
+		            <td><a href="/<%=cookbooks[item].url%>"><%=cookbooks[item].title %></a></td>
 		            <td><%= datetime %></td>
 		            <td>
 		            	<div class="btn-group">
-						  <button onclick="editArticle('<%=posts[item].id%>')" class="btn">编辑</button>
-						  <button onclick="deleteArticle('<%=posts[item].id%>')" class="btn">删除</button>
-						</div
+						  <button onclick="editCookbook('<%=cookbooks[item].id%>')" class="btn">编辑</button>
+						  <button onclick="deleteCookbook('<%=cookbooks[item].id%>')" class="btn">删除</button>
+						</div>
 					</td>
 		          </tr>
 		          <% } %>

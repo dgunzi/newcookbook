@@ -9,7 +9,6 @@ var url = require('url');
 
 exports.index = function (req, res, next) {
 	var current_page = parseInt(req.query.page, 10) || 1;
-	console.log('current_page---'+current_page);
 	var pathname = url.parse(req.url).pathname;
 	var render = function (cookbooks, pages){
 		res.render('index', {
@@ -19,15 +18,15 @@ exports.index = function (req, res, next) {
 			base_url: pathname
 		});
 	}
+	
 	var proxy = new EventProxy();
 	proxy.assign('cookbooks', 'pages', render);
 	var where = {};
 	var limit = config.limit;
-	var opt = { skip: (current_page - 1) * limit, limit: limit, sort: [ ['datetime', 'desc'] ]};
+	var opt = {skip: (current_page - 1) * limit, limit: limit,sort: [['datetime', 'desc']]};
 	
 	cookbookCtrl.get_cookbook_by_query(where, opt, function(err, cookbooks){
 		if(err) return next(err);
-		
 		proxy.trigger('cookbooks', cookbooks);
 	});
 	
