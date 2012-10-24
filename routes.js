@@ -15,10 +15,14 @@ module.exports = function (app) {
   app.get('/cookbook', cookbook.cookbook_admin);
   //edit cookbook
   app.get('/edit/:type/:id', cookbook.cookbook_edit);
-  // write
+  // write cookbook
   app.get('/write', cookbook.cookbook_write);
-  
-
+  // new cookbook
+  app.post('/newcookbook', cookbook.cookbook_add);
+  // update cookbook
+  app.post('/update/:id', cookbook.cookbook_update);
+  // delete cookbook
+  app.get('/delete/:type/:id', cookbook.cookbook_del);
   // Route that takes the post upload request and sends the server response
   app.post('/upload', function(req, res) {
 		var uploadPath = __dirname + config.upload_dir;

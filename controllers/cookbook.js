@@ -4,6 +4,7 @@
 var models = require('../models');
 var cookbook = models.cookbook;
 var EventProxy = require('eventproxy').EventProxy;
+var crypto = require('crypto');
 
 exports.cookbook_write = function(req, res, next){
 	res.render('cookbookwrite', {edit: '0', post: ""});
@@ -78,6 +79,71 @@ exports.cookbook_view = function(req, res, next) {
 			}
 	});
 }
+
+
+exports.cookbook_add = function(req, res){
+	var d = new Date();
+	var newCookbook  = new cookbook();
+	
+	newCookbook.title = req.body.title;
+	newCookbook.url = req.body.url;
+	newCookbook.level = req.body.level;
+	newCookbook.major = req.body.major;
+	newCookbook.minor = req.body.minor;
+	newCookbook.seasoning = req.body.seasoning;
+	newCookbook.steps = req.body.steps;
+	newCookbook.user = 'admin';
+	newCookbook.datetime = d;
+	newCookbook.id = crypto.createHash('md5').update(newCookbook.url + newCookbook.datetime).digest("hex");
+
+	newCookbook.save(function(err){
+		if (err)
+			res.render('error', {error: err});
+		else
+			res.redirect('/cookbook');
+	});
+}
+
+exports.cookbook_update = function(req, res){
+	if (req.params.id){
+		cookbook.findOne({id: req.params.id}, function(err, doc){
+			if (!doc)
+				res.render('error', {error: '无此信息或已被删除'});
+			else {
+				var d = new Date();
+				doc.title = req.body.title;
+				doc.url = req.body.url;
+				doc.level = req.body.level;
+				doc.major = req.body.major;
+				doc.minor = req.body.minor;
+				doc.seasoning = req.body.seasoning;
+				doc.steps = req.body.steps;
+				doc.user = 'admin';
+				doc.datetime = d;
+				doc.save(function(err){
+					if (err)
+						res.render('error', {error: err});
+					else
+						res.redirect('/cookbook');
+				});
+			}
+		});
+	}
+}
+
+exports.cookbook_del = function(req, res){
+	if ( req.params.type == 'a')
+	{
+		if ( req.params.id != "" ){
+			cookbook.remove({id: req.params.id}, function(err){
+				if (err) 
+					res.render('error', {error: err});
+				else 
+					res.redirect('/cookbook');
+			});
+		}
+	}
+};
 
 //指明查询条件查询多条记录
 function get_cookbook_by_query(where, opt, cb){
