@@ -2,22 +2,26 @@
 	<div class="container-fluid">	
 	  <div class="subnav">
 	    <ul class="nav nav-pills">
-	      	<li><a href="/">全部</a></li>
-			<li><a href="/cookbook">新手尝试</a></li>
-			<li><a href="/cookbook">初级入门</a></li>
-			<li><a href="/cookbook">初中水平</a></li>
-			<li><a href="/cookbook">中级掌勺</a></li>
-			<li><a href="/cookbook">高级厨师</a></li>
-			<li><a href="/cookbook">厨神级</a></li>
+			<li><a href="/">全部</a></li>
+			<%
+				for (var item=0; item < cookconfig.level.length; item++){	
+			%>
+					<li><a href="/cookbook"><%=cookconfig.level[item]%></a></li>
+			<%	
+				} 
+			%>
 	    </ul>
 	  </div>
 	  <div class="row-fluid">
 	  	<div class="span8">
-	      <%  var monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
-
+	      <%  
+	      		var monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+				var levelClass = ["","label-success","label-warning","label-important","label-info","label-inverse"];
 				for (var item  = cookbooks.length - 1; item != -1  ; item -- ) { 
 					var d = cookbooks[item].datetime;
 					var datetime = monthNames[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
+					var levelIndex = cookbooks[item].level-1;
+					
 			%>
 			<section class="cookbookitem thumbnail">
 			<div class="page-header">
@@ -25,7 +29,7 @@
 			    <div class="info">
 	  					<span><i class="icon-user"></i>作者：<%- cookbooks[item].user %></span>
 	  					<span style="margin-left: 35px;"><i class="icon-calendar"></i>发表于：<small><%=datetime%></small></span>
-	  					<span class="label label-warning fr">中级掌勺</span>
+	  					<span class="label <%=levelClass[levelIndex]%> fr"><%=cookconfig.level[levelIndex]%></span>
 	  			</div>
 			</div>
 			<div class="steps">

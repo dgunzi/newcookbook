@@ -6,6 +6,7 @@ var express = require('express'),
 	routes = require('./routes'),
 	app = express(),
 	site = require('./config/config').site,
+	cookconfig = require('./config/config').cookbook,
 	ejs = require('ejs'),
 	path = require('path');
 
@@ -44,7 +45,8 @@ app.configure('production', function(){
 //定义locals变量
 app.locals({
     config  : config,
-    site : site
+    site : site,
+    cookconfig :　cookconfig
 });
 
 // Routes

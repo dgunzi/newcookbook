@@ -26,3 +26,8 @@ exports.site = {
 	copyright: 'Copyright &copy;2011 - 2012 Homely Dishes版权所有 ',
 	version: '0.1',
 };
+
+//cookbookconfig
+exports.cookbook = {
+	level: ["新手尝试","初级入门","初中水平","中级掌勺","高级厨师","厨神级"]
+};
