@@ -1,54 +1,33 @@
 <%- include common/header.html -%>
-	<div class="container-fluid">
+	<div class="container-fluid">	
+	  <div class="subnav">
+	    <ul class="nav nav-pills">
+	      	<li><a href="/">全部</a></li>
+			<li><a href="/cookbook">新手尝试</a></li>
+			<li><a href="/cookbook">初级入门</a></li>
+			<li><a href="/cookbook">初级水平</a></li>
+			<li><a href="/cookbook">中级掌勺</a></li>
+			<li><a href="/cookbook">高级厨师</a></li>
+			<li><a href="/cookbook">厨神级</a></li>
+	    </ul>
+	  </div>
 	  <div class="row-fluid">
-	  	<div class="span2">
-	      	<ul class="nav nav-pills nav-stacked">
-				  <li class="active">
-				    <a href="/">全部</a>
-				  </li>
-				  <li>
-				    <a href="/cookbook">新手尝试</a>
-				  </li>
-				  <li>
-				    <a href="/cookbook">初级入门</a>
-				  </li>
-				  <li>
-				    <a href="/cookbook">初级水平</a>
-				  </li>
-				  <li>
-				    <a href="/cookbook">中级掌勺</a>
-				  </li>
-				  <li>
-				    <a href="/cookbook">高级厨师</a>
-				  </li>
-				  <li>
-				    <a href="/cookbook">厨神级</a>
-				  </li>
-			</ul>
-	    </div>
-	  	<div class="span7">
+	  	<div class="span8">
 	      <%  var monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
 
 				for (var item  = cookbooks.length - 1; item != -1  ; item -- ) { 
-					//var d = new Date(cookbooks[item].datetime);
 					var d = cookbooks[item].datetime;
 					var datetime = monthNames[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
 			%>
-			<section>
+			<section class="cookbookitem thumbnail">
 			<div class="page-header">
-			    <h1><a href="/<%=cookbooks[item].url%>"><%=cookbooks[item].title %></a></h1>
+			    <h2><a href="/<%=cookbooks[item].url%>" target="_blank"><%=cookbooks[item].title %></a></h2>
+			    <div class="info">
+	  					<span><i class="icon-user"></i>作者：<%- cookbooks[item].user %></span>
+	  					<span style="margin-left: 35px;"><i class="icon-calendar"></i>发表于：<small><%=datetime%></small></span>
+	  			</div>
 			</div>
-			<div class="row">
-			    	<div class="row-fluid">
-	  				<div class="span9">
-	  					<%- cookbooks[item].user %>
-	  				</div>
-	  				<div class="span3">
-	  					<small><%=datetime%></small>
-	  				</div>
-	  				</div>	
-			</div>
-			<div class="row">
+			<div class="steps">
 				<%
 					var steps = cookbooks[item].steps;
 					var lastPic = '';
@@ -63,13 +42,14 @@
 					if(pages == current_page) nextPage = pages;
 					if(current_page == 1) prePage = 1;
 				%>
-				<%- lastPic %>
+				<div class="finalPic"><%- lastPic %></div>
 				<%- steps %>
-			</div>	
-			</section>
-			<div class="row">
-				  <div class="fr"><a class="btn js-btn" href="/<%=cookbooks[item].url%>">查看详细  »</a></div>
 			</div>
+			<div class="row">
+				  <div class="fr"><a class="btn js-btn" target="_blank" href="/<%=cookbooks[item].url%>">查看详细  »</a></div>
+			</div>
+			</section>
+
 			<% } %>
 			<hr/>
 			 <ul class="pager">
@@ -81,10 +61,18 @@
 			  </li>
 			</ul>
 	    </div>
-	    <div class="span3">
-	    	<section>
+	    <div class="span4 side_bar">
+	    	<section class="login thumbnail">
+	    		<h3>Homely Dishes,欢迎您！</h3>
+	    		<a href="/user_add" class="btn btn-info">注册</a>
+				<p>
+						已注册用户请
+						<a href="/login">登录</a>
+				</p>
+	    	</section>
+	    	<section class="thumbnail">
 	    		<div class="page-header">
-		          <h1>大家在看</h1>
+		          <h2>大家在看</h2>
 		        </div>
 		        <ol>
 			        <li><a>可乐鸡翅</a></li>
@@ -97,9 +85,9 @@
 			        <li><a>魔芋烧鸭</a></li>
 			    </ol>
 	    	</section>
-	    	<section>
+	    	<section class="thumbnail">
 	    		<div class="page-header">
-		          <h1>随机菜谱</h1>
+		          <h2>随机菜谱</h2>
 		        </div>
 		        <ol>
 			        <li><a>以热爱祖国为荣，以危害祖国为耻吗？</a></li>
@@ -112,9 +100,9 @@
 			        <li><a>以服务人民为荣，以背离人民为耻吗？</a></li>
 			    </ol>
 	    	</section>
-	    	<section>
+	    	<section class="thumbnail">
 	    		<div class="page-header">
-		          <h1>今日推荐</h1>
+		          <h2>今日推荐</h2>
 		        </div>
 		        <div class="tabbable" style="margin-bottom: 9px;">
 			        <ul class="nav nav-tabs">
@@ -124,7 +112,7 @@
 			        </ul>
 			        <div class="tab-content">
 			          <div class="tab-pane active" id="1">
-			            	<div class="thumbnail">
+			            	<div>
 				            <img src="/img/thumb/huangdouyumifagao.png" alt="">
 				            <div class="caption">
 				              <h3>黄豆玉米面发糕</h3>
@@ -136,7 +124,7 @@
 				          </div>
 			          </div>
 			          <div class="tab-pane" id="2">
-			            <div class="thumbnail">
+			            <div>
 				            <img src="/img/thumb/jiamaji.png" alt="">
 				            <div class="caption">
 				              <h3>椒麻鸡</h3>

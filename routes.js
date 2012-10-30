@@ -5,6 +5,7 @@
 
 var site = require('./controllers/site');
 var cookbook = require('./controllers/cookbook');
+var user = require('./controllers/user');
 var upload = require('./controllers/upload');
 var config = require('./config/config').config;
 
@@ -33,8 +34,12 @@ module.exports = function (app) {
 	        else
 	            res.send(JSON.stringify(data), {'Content-Type': 'text/plain'}, 404);
 	    });
-  });	
-	
+  });
+  
+
+  app.get('/user_add', user.add_html);
+  app.post('/useradd', user.add_action);
+  	
   //view
   app.get('/:post', cookbook.cookbook_view);
 

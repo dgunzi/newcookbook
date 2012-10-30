@@ -10,16 +10,20 @@ var express = require('express'),
 	path = require('path');
 
 app.configure(function(){
+	
 	app.set('views', __dirname + '/views');
+	
 	app.use(express.bodyParser());
   	app.use(express.methodOverride());
-	//app.use(express.static(__dirname + '/public'));
+  	
+	app.use(express.cookieParser());
+	app.use(express.session({
+	    secret: config.session_secret
+	}));
+	
 	app.set('view engine', 'html');
 	app.engine('html', ejs.renderFile);
-	
-	/*app.use(express.session({
-    	secret: config.session_secret
-  	}));*/
+
 });
 
 var staticDir = path.join(__dirname, 'public');
@@ -35,12 +39,6 @@ app.configure('production', function(){
   app.use(express.errorHandler());
   app.use('view cache',true);
   
-  app.use(express.csrf());
-
-  app.use(function(req, res, next) {
-    res.locals.csrf = req.session ? req.session._csrf : '';
-    next();
-  });
 });
 
 //定义locals变量
@@ -48,7 +46,6 @@ app.locals({
     config  : config,
     site : site
 });
-
 
 // Routes
 routes(app);

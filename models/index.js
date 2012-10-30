@@ -13,5 +13,7 @@ mongoose.connect(config.db, function(err){
 
 //models
 require('./cookbook');
+require('./user');
 
 exports.cookbook = mongoose.model('cookbook');
+exports.User = mongoose.model('User');
