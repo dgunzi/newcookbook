@@ -134,9 +134,14 @@ img { max-width: 100%;}
 .cookbookitem .finalPic{
 	text-align: center;
 }
-
+.cookbookDetail .minfo{
+	margin-left:15px;
+}
 .cookbookitem .info i{
 	margin-right:3px;
+}
+.cookbookDetail .detailTitle h3 i{
+	margin:3px 3px 0 0;
 }
 .side_bar .thumbnail{
 	margin-top: 15px;

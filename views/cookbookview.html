@@ -1,32 +1,50 @@
 <%- include common/header.html -%>
-	 <div class="container-fluid">
+	 <div class="mainContainer">
 	 	<div class="row-fluid">
 	  	<div class="span8">
 	  		<%  var monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
-
+				var levelClass = ["","label-success","label-warning","label-important","label-info","label-inverse"];
 				var d = cookbook.datetime;
 				var datetime = monthNames[d.getMonth()] + " " + d.getDay() + ", " + d.getFullYear();
+				var levelIndex = cookbook.level-1;
 			%>
-			<section class="cookbookitem">
+			<section class="cookbookitem thumbnail">
 			<div class="page-header">
 			    <h2><%=cookbook.title %></h2>
-			    <div class="row-fluid">
-	  				<div class="span9">
-	  					<%= cookbook.user %>
-	  				</div>
-	  				<div class="span3">
-	  					<span style="margin-left: 35px;"><small><%=datetime%></small></span>
-	  				</div>
+	  			<div class="info">
+	  					<span><i class="icon-user"></i>作者：<%= cookbook.user %></span>
+	  					<span style="margin-left: 35px;"><i class="icon-calendar"></i>发表于：<small><%=datetime%></small></span>
+	  					<span class="label <%=levelClass[levelIndex]%> fr"><%=cookconfig.level[levelIndex]%></span>
 	  			</div>
 			</div>
-			
-			<div class="steps">
+			<div class="steps cookbookDetail">
+				<div class="detailTitle"><h3><i class="icon-home"></i>主料：</h3></div>
+				<p class="minfo"><%- cookbook.major %></p>
+				<%
+					if(cookbook.minor!=""){
+				%>
+				<div class="detailTitle"><h3><i class="icon-tags"></i>配料：</h3></div>
+				<p class="minfo"><%- cookbook.minor %></p>
+				<%
+					}
+				%>
+				<div class="detailTitle"><h3><i class="icon-leaf"></i>调料：</h3></div>
+				<p class="minfo"><%- cookbook.seasoning %></p>
+				<div class="detailTitle"><h3><i class="icon-list"></i>做法：</h3></div>
 				<%- cookbook.steps %>
 			</div>	
 			</section>
 	  	</div>
-	  	 <div class="span4">
-	  	 	<section>
+	  	 <div class="span4 side_bar">
+	  	 	<section class="login thumbnail">
+	    		<h3>Homely Dishes,欢迎您！</h3>
+	    		<a href="/user_add" class="btn btn-info">注册</a>
+				<p>
+						已注册用户请
+						<a href="/login">登录</a>
+				</p>
+	    	</section>
+	  	 	<section class="thumbnail">
 	    		<div class="page-header">
 		          <h2>大家在看</h2>
 		        </div>
@@ -41,7 +59,7 @@
 			        <li><a>魔芋烧鸭</a></li>
 			    </ol>
 	    	</section>
-	    	<section>
+	    	<section class="thumbnail">
 	    		<div class="page-header">
 		          <h2>随机菜谱</h2>
 		        </div>
@@ -56,7 +74,7 @@
 			        <li><a>以服务人民为荣，以背离人民为耻吗？</a></li>
 			    </ol>
 	    	</section>
-	    	<section>
+	    	<section class="thumbnail">
 	    		<div class="page-header">
 		          <h2>今日推荐</h2>
 		        </div>
@@ -68,7 +86,7 @@
 			        </ul>
 			        <div class="tab-content">
 			          <div class="tab-pane active" id="1">
-			            	<div class="thumbnail">
+			            	<div>
 				            <img src="/img/thumb/huangdouyumifagao.png" alt="">
 				            <div class="caption">
 				              <h3>黄豆玉米面发糕</h3>
@@ -80,7 +98,7 @@
 				          </div>
 			          </div>
 			          <div class="tab-pane" id="2">
-			            <div class="thumbnail">
+			            <div>
 				            <img src="/img/thumb/jiamaji.png" alt="">
 				            <div class="caption">
 				              <h3>椒麻鸡</h3>
