@@ -21,7 +21,9 @@ app.configure(function(){
 	app.use(express.session({
 	    secret: config.session_secret
 	}));
-	
+	//检测用户中间件
+  	app.use(require('./controllers/user').auth_user);
+  	
 	app.set('view engine', 'html');
 	app.engine('html', ejs.renderFile);
 

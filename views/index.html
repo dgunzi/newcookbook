@@ -67,6 +67,26 @@
 			</ul>
 	    </div>
 	    <div class="span4 side_bar">
+	    	<%
+	    	if(locals.current_user){ 
+	    	%>
+	    	<section class="login thumbnail" id="user_login">
+				<div class="pull-left user_icon">
+					<a href="/user_view/<%= current_user.user_name %>" class="btn btn-info">
+						<i class="icon-user icon-white"></i>
+						<span><%= current_user.user_name%></span>
+					</a>
+				</div>
+				<ul class="pull-left unstyled">
+					<li>
+						发表的菜谱：<b>12</b>
+					</li>
+					<li>
+						发表的回复：<b>79</b>
+					</li>
+				</ul>
+			</section>	
+			<% }else{ %>	
 	    	<section class="login thumbnail">
 	    		<h3>Homely Dishes,欢迎您！</h3>
 	    		<a href="/user_add" class="btn btn-info">注册</a>
@@ -75,6 +95,9 @@
 						<a href="/login">登录</a>
 				</p>
 	    	</section>
+	    	<%
+	    	}
+	    	%>
 	    	<section class="thumbnail">
 	    		<div class="page-header">
 		          <h2>大家在看</h2>

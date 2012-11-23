@@ -163,3 +163,22 @@ img { max-width: 100%;}
 .side_bar .login p{
 	padding:5px 0;
 }
+.pull-left{
+	float:left;
+}
+#user_login{
+	height:50px;padding-left:15px;
+}
+#user_login ul{
+	text-align: left;margin-left: 10px;
+}
+#user_login ul li b{
+	background: #C8CFE0;
+	padding: 0 5px;
+	margin-left: 5px;
+	color: #fff;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+#footer{text-align:center;}

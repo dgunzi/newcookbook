@@ -12,6 +12,7 @@ exports.config = {
 	password      : "admin",
 	node_port     : process.argv[2] || 3000,
 	upload_dir    : '/public/uploads/',
+	admins		  : {admin: true}, //超级管理员
 	tmp_dir       : 'tmp',
 	db 			  : 'mongodb://127.0.0.1:27017/nodeblog'
 }

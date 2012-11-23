@@ -39,6 +39,9 @@ module.exports = function (app) {
 
   app.get('/user_add', user.add_html);
   app.post('/useradd', user.add_action);
+  app.get('/login', user.login);
+  app.post('/login', user.login);
+  app.get('/logout', user.logout);
   	
   //view
   app.get('/:post', cookbook.cookbook_view);

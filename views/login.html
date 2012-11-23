@@ -1,0 +1,84 @@
+<%- include common/header.html -%>
+<div class="mainContainer">
+	<style type="text/css">
+      .loginBox{
+		width:360px;height:330px;
+		padding:15px 15px 0 25px;
+		border:1px solid #CCC; 
+		color:#000; 
+		margin-top:40px; 
+		border-radius:8px;
+		background: white; font:11px/1.5em 'Microsoft YaHei' ;
+		position: absolute;
+		left:50%;top:50%;
+		margin-left:-210px;
+		margin-top:-205px;
+		-moz-box-shadow:2px 2px 10px #ccc;
+		-webkit-box-shadow:2px 2px 10px #ccc;
+		box-shadow:2px 2px 10px #ccc;
+	  }
+      .loginBox h2{height:45px;font-size:24px;font-weight:600;}
+	  .loginhelp{text-align:center;padding-top:15px;}
+	  .loginhelp span{display:block;}
+	  #loginboxPanel .input-prepend{
+		margin-bottom:15px;
+	  }
+	  #loginboxPanel .input-prepend .add-on,#loginboxPanel .input-append .add-on{padding:10px 12px;}
+	  #loginboxPanel .btns{
+		border-bottom:1px solid #ccc;padding-bottom:25px;
+	  }
+	  #loginboxPanel .btns .span1{
+		margin-left:30px;
+	  }
+	  #loginboxPanel .btns .span8{
+		margin-top:12px;
+	  }
+	  #loginboxPanel .btns .span8 span{
+		padding-left:5px;
+	  }
+	  #loginboxPanel .tip{
+		margin-bottom:25px;font-size:14px;
+	  }
+	  #loginboxPanel input.span3{
+		font-size:14px;
+		font-weight:600;
+		width:300px;
+	  }
+	 #footer{text-align:center;z-index:999; position:fixed; bottom:0; left:0; width:100%; height:80px; line-height:40px;/* for ie6 */ _position:absolute; _top: expression(documentelement.scrolltop + documentelement.clientheight-this.offsetheight);overflow:visible; }
+    </style>
+    <%if(locals.error){%>
+		<div class="alert alert-error">
+			<a class="close" data-dismiss="alert" href="#">x</a>
+			<%= error %>
+		</div>
+	<%}%>
+	<section class="loginBox">
+		<form id="loginform" name="loginform" method="post">
+          <section id="loginboxPanel">
+            <h2>登 录</h2>
+			<div class="tip">请使用已注册账户登录：</div>
+			<div class="input-prepend">
+              <span class="add-on"><i class="icon-user"></i></span><input class="span3" type="text" name="user_name" placeholder="用户名" style="margin:0;padding:19px;">
+            </div>
+			<div class="input-prepend">
+              <span class="add-on"><i class="icon-lock"></i></span><input class="span3" type="password" name="password" placeholder="密&nbsp;&nbsp;&nbsp;码" style="margin:0;padding:19px;">
+            </div>
+            <section class="row-fluid btns">
+              <section class="span8 lh30"><input type="checkbox" name="rememberme" /><span>下次自动登录</span></section>
+			  <section class="span1"><input type="submit" value=" 登  录 " class="btn btn-success btn-large"></section>
+            </section>
+			<section class="loginhelp">
+				<span>您还没有账户吗？<a href="/user_add">去注册一个</a></span>
+				<span><a>忘记密码？</a>| <a href="/">回到主页</a></span>
+			</section>
+          </section>
+        </form>  
+    </section>
+	</div>
+	  <footer id="footer">
+	  	<hr/>
+        <p><%=site.copyright%></p>
+      </footer>
+	</div>
+</body>
+</html>

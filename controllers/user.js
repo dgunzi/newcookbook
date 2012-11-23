@@ -108,3 +108,89 @@ exports.add_action = function(req, res, next){
     });
 
 }
+
+//login
+exports.login = function(req, res, next){
+   var method = req.method.toLowerCase();
+   if(method === 'get'){
+       res.render('login');
+       return;
+   }
+   if(method === 'post'){
+       var user_name = sanitize(req.body.user_name).trim();
+       user_name = sanitize(user_name).xss();
+       var password = sanitize(req.body.password).trim();
+       password = sanitize(password).xss();
+
+       if(!user_name || !password){
+	   res.render('login',{error: '信息不完整'});
+	   return;
+       }
+       User.findOne({'user_name': user_name},function(err, userRow){
+	    if(err){
+		return next(err);
+	    }
+	    if(!userRow){
+	    	res.render('login',{error: '没有此用户，或已被删除'});
+	    	return;
+	    }
+	    password = md5(password);
+	    if(password != userRow.password){
+		res.render('login',{error: '密码错误'});
+		return;
+	    }
+
+	    //设置cookie
+	    gen_session(userRow, res, req);
+	    
+	    res.redirect('/');
+
+       })
+   }
+}
+
+//logout
+exports.logout = function(req, res, next){
+    req.session.destroy();
+    res.clearCookie(config.auth_cookie_name, {path: '/'});
+    res.redirect('/');
+}
+
+//检测用户中间件
+exports.auth_user = function(req,res,next){
+  if(req.session.user){
+  	//如果存在session,直接调用b
+	if(config.admins[req.session.user.user_name]){
+	  	req.session.user.is_admin = true;
+	}else{
+		req.session.user.is_admin = false;
+	}
+   	res.locals.current_user = req.session.user;
+   	return next();
+  }else{
+  	//如果不存在session,从cookie中调用并设置session
+    var cookie = req.cookies[config.auth_cookie_name];
+    if(!cookie) return next();
+
+    var auth_token = decrypt(cookie, config.session_secret);
+    var auth = auth_token.split('\t');
+    var user_id = auth[0];
+    User.findOne({_id:user_id},function(err,user){
+      if(err) return next(err);
+      if(user){
+     	if(config.admins[user.user_name]){
+      		user.is_admin = true;
+  	  	}else{
+    		user.is_admin = false;
+　		}
+      req.session.user = user;
+      req.session.cookie.maxAge = 1000 * 60 * 60;
+      res.locals.current_user = req.session.user;
+      return next();
+      }else{
+        return next();  
+      }
+    }); 
+  }
+};
+
